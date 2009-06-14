@@ -35,13 +35,18 @@ $(function() {
     upgrade_link_actions();
     upgrade_search_form();
 
+    // Fade out, then set a 'loading message', then show that
+    // Finally, once all the above has completed, load the results page.
     function upgrade_search_form() {
         $('#search').submit(function() {
             var url = '/search/?inline=1&q='+escape($('#query').val());
-            $('#wrap').load(url).fadeOut('fast', function() { $('#wrap').html('<span id=loading>loading ...</span>').show() });
+            $('#wrap').fadeOut('fast', function() {
+                $('#wrap').html('<span id=loading>loading ...</span>')
+                          .show('fast', function() { $('#wrap').load(url) });
+            })
             return false;
-        });
-    }
+        })
+    };
 
     function upgrade_link_actions() {
         $('.hit h3 a').live('click', function (a) {
