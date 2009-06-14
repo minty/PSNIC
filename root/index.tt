@@ -1,5 +1,13 @@
 [%- META title = 'psnic' -%]
 
+[%- MACRO example_search(query) BLOCK %]
+  <form action=/search/ method=get>
+    <input type=hidden name=session value=new>
+    <input type=text name=q value="[% query %]">
+    <input type=submit name=search value=Search>
+  </form>
+[% END -%]
+
 <div id=home>
 
 <h1>PSNIC <span id=alpha>Alpha Release</span></h1>
@@ -19,7 +27,7 @@
   <li> Search any one of these types or combinations of them.  E.g., modules that mention <a href="/search/?comment:%20JFDI">"JFDI" in the comments</a>.</li>
   <li> Multiple "windows", so you can show related POD pages side by side. <a>Example</a>.
   <li> Windows can be moved & resized (thanks to <a href="http://jquery.com/">jquery</a>).</li>
-  <li> Remember your state. E.g. <a href="">Moose doc set</a> - note the scroll position of the Pod windows.  Disabled in the demo running on this site.</li>
+  <li> Remember your state. E.g. <a href="/search/?session=2&q=mod:%20Moose::">Moose doc set</a> - note the scroll position of the Pod windows.  Disabled in the demo running on this site.</li>
 </ul>
 
 <h2>Goals / Objective</h2>
@@ -41,17 +49,11 @@
 <ul id=examples>
   <li>
     <h2>Modules under Moose::* namespace</h2>
-    <form action=/search/ method=get>
-      <input type=text name=q value="mod: Moose::">
-      <input type=submit name=search value=Search>
-    </form>
+    [% example_search('mod: Moose::') %]
   </li>
   <li>
     <h2>Modules with sub(routines) called "destroy"</h2>
-    <form action=/search/ method=get>
-      <input type=text name=q value="sub: destroy">
-      <input type=submit name=search value=Search>
-    </form>
+    [% example_search('sub: destroy') %]
   </li>
 </ul>
 
@@ -86,7 +88,7 @@
 <h3>Architecture / Design</h3>
 
 <ul>
-  <li> Improve the code</li>
+  <li> Improve the code & code layout</li>
   <li> Try SQLite and Postgres Full Text search solutions</li>
   <li> Abtract more code out of the Catalyst application and into CPAN modules</li>
 </ul>

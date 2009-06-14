@@ -24,6 +24,7 @@ $(function() {
     //   Deleted
     //   Moved
     //   Resized
+    //   Pod page is changed
 
     var session = new_session_id();
     var dialogs = [];
@@ -239,30 +240,41 @@ $(function() {
     }
 
     function init_session() {
+        var q_session = $.query.get('session');
         $.ajax({
             type:     'GET',
             url:      '/session/list',
             dataType: 'json',
             success:  function( sessions, textStatus ) {
-                var q = $.query.get('q');
                 if (sessions.length) {
                     var active = $.grep(sessions, function(n, i) { return n.active });
                     var obj = active.length ? active[0] : sessions[0];
-                    session = obj.session;
+                    if (q_session == 'new') {
+                        sessions.push(new_session_object());
+                    }
+                    else if (q_session && String(q_session).match(/^\d+$/) && q_session <= sessions.length) {
+                        session = sessions[ q_session - 1 ].session;
+                    }
+                    else {
+                        session = obj.session;
+                    }
                     load_dialogs_for_session(session);
                     inject_session_select_box(sessions);
                 }
                 else {
-                    var now = new Date();
-                    inject_session_select_box([{
-                        'session': session,
-                        'created_at': fmt_date(now) + ' ' + fmt_time(now),
-                    }]);
+                    inject_session_select_box([ new_session_object() ]);
                 }
             }
         });
     }
 
+    function new_session_object() {
+        var now = new Date();
+        return {
+            'session': session,
+            'created_at': fmt_date(now) + ' ' + fmt_time(now),
+        };
+    }
 
     function load_dialogs_for_session(session) {
         $.ajax({
@@ -307,6 +319,7 @@ $(function() {
         option.attr(spec);
         return option;
     }
+
     function inject_session_select_box(sessions) {
 
         var select = $(document.createElement('select'));
@@ -385,14 +398,17 @@ $(function() {
     }
 
     function pad(number) { return number > 10 ? number : '0' + number }
+
     function fmt_date(d) {
         return [d.getFullYear(), pad(d.getMonth() + 1), pad(d.getDate())]
             .join('-');
     }
+
     function fmt_time(d) {
         return [pad(d.getHours()), pad(d.getMinutes()), pad(d.getSeconds())]
             .join(':');
     }
+
     function add_session_to_select(session) {
         var now = new Date();
         var text = fmt_date(now) + ' ' + fmt_time(now);
