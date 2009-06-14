@@ -16,6 +16,7 @@
   <body>
     [% IF pod_page; content; ELSE; %]
     <div id=top-nav><div class=inner>
+      <a href='/' title=Home><img src="/static/images/go-home.png" width=16 height=16 alt=Home></a>
       <form action="/search/" method=GET id=search>
         <input type=text name=q[% IF query; ' value="'; query|html; '"'; END %] id=query> <input type=submit name=search value=Search>
       </form>
