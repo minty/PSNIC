@@ -1,6 +1,7 @@
 *.swp
 Makefile
 Makefile.old
+META.yml
 blib
 inc
 pm_to_blib
