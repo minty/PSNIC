@@ -4,6 +4,16 @@
 
 <h2 class=search>Search Results for [% query | html %]</h2>
 
+[% IF !results.all %]
+  <h2>Sorry, no results for "[% query | html %]"</h2>
+
+  <p>You might want to try:</p>
+
+  <ul>
+    <li><a href="http://search.cpan.org/search?query=[% query | uri %]">search.cpan.org</a></li>
+  </ul>
+[% END %]
+
 [% FOR hit = results.all; %]
 <div class=hit>
   <h3>
