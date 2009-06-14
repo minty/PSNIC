@@ -11,14 +11,14 @@ my $ROWS_PER_PAGE = 100;
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
-    my $r     = $c->request;
-    my $query = $r->query_params->{q} || $c->response->redirect('/');
-    my %query = tokenize($query);
-    my @conds = map { expand_match_against($_ => $query{$_}) } keys %query;
+    my %params  = %{ $c->request->query_params };
+    my $query   = $params{q} || $c->response->redirect('/');
+    my %query   = tokenize($query);
+    my @conds   = map { expand_match_against($_ => $query{$_}) } keys %query;
 
     $c->stash({
         template => 'search.tt',
-        pod_page => $r->query_params->{inline} ? 1 : 0,
+        pod_page => $params{inline} ? 1 : 0,
         query    => $query,
         results  => scalar $c->model('DB::InstalledModule')->search({},{
                         page => 1,
