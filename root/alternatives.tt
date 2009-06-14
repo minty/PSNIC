@@ -3,6 +3,7 @@
 <h2>Alternatives</h2>
 
 <ul>
+  <li><a href="http://search.cpan.org/perldoc?CPAN::Mini::Webserver">CPAN::Mini::Webserver</a> - a local search tool running over your minicpan mirror</li>
   <li><a href="http://search.cpan.org/">search.cpan.org</a> - original and still the best</li>
   <li><a href="http://kobesearch.cpan.org/">kobesearch.cpan.org</a></li>
   <li><a href="http://cpantools.com/">cpantools.com</a> - <a href="http://labs.google.com/suggestfaq.html#q1">Google Suggest</a> style search hints</li>
