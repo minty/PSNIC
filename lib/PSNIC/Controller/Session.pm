@@ -8,14 +8,6 @@ use parent 'Catalyst::Controller';
 use Data::JavaScript::Anon;
 use List::MoreUtils qw<any>;
 
-# XXX s/dialogs/get/
-# Three modes:
-# session/list                - all existing sesssion ids & their creation time
-# session/dialogs/$session_id - the dialogs within a session
-# session/delete              - delete everything about a session
-# session/label               - post to set the sessions label
-# session/query               - post to set the sessions query
-
 sub label :Local :Args(0) {
     my ($self, $c) = @_;
     $self->set_session_field($c, 'label');
@@ -28,6 +20,11 @@ sub query :Local :Args(0) {
 
 sub set_session_field {
     my ($self, $c, $field) = @_;
+
+    if ($c->config->{disable_state_save}) {
+        $c->response->body('{ status: 1 }');
+        return;
+    }
 
     my $request  = $c->request;
     my $response = $c->response;
@@ -49,7 +46,6 @@ sub set_session_field {
     $response->body('{ status: 1 }');
 }
 
-# match exactly /session/list/
 sub list :Local :Args(0) {
     my ($self, $c) = @_;
 
@@ -89,7 +85,7 @@ sub dialogs :Local :Args(1) {
 
     # XXX This would be better done as an optional parameter
     my $activate = $request->query_keywords || '';
-    if ($activate eq 'activate') {
+    if ($activate eq 'activate' && !$c->config->{disable_state_save}) {
         my $session_rs = $c->model('DB::Session');
         $session_rs->search({ active => 1 })->update({ active => 0 });
         $session->update({ active => 1 });

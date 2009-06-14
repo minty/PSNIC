@@ -15,14 +15,18 @@ sub index :Path :Args(0) {
     my %valid_attrs = map { $_ => 1 }
                         qw<session x y z width height top lft pod title>;
 
-    # XXX Form validation!
-    # http://search.cpan.org/perldoc?Data::FormValidator
     if ($request->method eq 'POST') {
+
+        if ($c->config->{disable_state_save}) {
+            $response->body('{ status: 1 }');
+            return;
+        }
+
         my $params = $request->body_params;
         $params->{$_} = trim($params->{$_}) for qw<title pod>;
         $response->status(400)
             if any { !defined $params->{$_} } qw<action session z>;
-        my (%data, $dialog);
+        my ($dialog);
         my $session_id = $params->{session};
         my $s_rs = $c->model('DB::Session');
         $c->model('DB')->schema->txn_do(sub{
@@ -53,7 +57,7 @@ sub index :Path :Args(0) {
             });
         }
         else { $response->status(404) }
-        $response->body(Data::JavaScript::Anon->anon_dump(\%data));
+        $response->body('{ status: 1 }');
     }
     elsif ($request->method eq 'GET') {
         my $params = $request->query_params;
