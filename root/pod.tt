@@ -1,0 +1,8 @@
+[% META title = 'pod' -%]
+
+[% pod_page = 1;
+   '<p class=description>';
+     module.first.pod_description;
+   '</p>';
+   module.first.pod_html
+%]

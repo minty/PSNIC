@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    [% IF !pod_page %]
+    <link type="text/css" href="/css/jquery-ui-1.7.1.custom.css" rel="stylesheet" />
+    <link type="text/css" href="/css/ours.css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="/js/query.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui-1.7.1.custom.min.js"></script>
+    [% IF load_sessions %]
+    <script type="text/javascript" src="/js/ours.js"></script>
+    [% END %]
+    <title>[% IF template.title; template.title; ' - '; END %]PSNIC: Perl Search Never Is Complete</title>
+    [% END %]
+  </head>
+  <body>
+    [% IF pod_page; content; ELSE; %]
+    <div id=top-nav><div class=inner>
+      <form action="/search/" method=GET id=search>
+        <input type=text name=q[% IF query; ' value="'; query|html; '"'; END %] id=query> <input type=submit name=search value=Search>
+      </form>
+      <a href=/help/>help</a>
+    </div></div>
+    <div id=wrap>
+    [% content %]
+    </div>
+    [% END %]
+  </body>
+</html>

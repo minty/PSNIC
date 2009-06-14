@@ -1,0 +1,16 @@
+#!/usr/bin/perl
+
+# ./deploy Session Dialog [Tablename]
+
+use warnings;
+use strict;
+use FindBin;
+use lib "$FindBin::Bin/../lib";
+use PSNIC::Schema;
+
+my $schema = PSNIC::Schema->db_connect;
+$schema->deploy({
+    add_drop_table => 1,
+    debug          => 1,
+    sources        => [ @ARGV ],
+});

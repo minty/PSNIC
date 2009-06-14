@@ -1,0 +1,12 @@
+[%- META title = 'psnic help' -%]
+
+<h2>Alternatives</h2>
+
+<ul>
+  <li><a href="http://search.cpan.org/">search.cpan.org</a> - original and still the best</li>
+  <li><a href="http://kobesearch.cpan.org/">kobesearch.cpan.org</a></li>
+  <li><a href="http://cpantools.com/">cpantools.com</a> - <a href="http://labs.google.com/suggestfaq.html#q1">Google Suggest</a> style search hints</li>
+  <li><a href="http://cpantools.com/beta/">cpantools.com/beta/</a> - tabs, google suggest, more whizzy</li>
+  <li><a href="http://www.google.com/search?q=site%3Asearch.cpan.org">Google <em>site</em> search</a> - search through search.cpan.org (or another domain of your choosing)</li>
+  <li><a href="http://www.google.com/codesearch?as_lang=perl">Google <em>code</em> search</a> - all the public Perl code Google can find</li>
+</ul>

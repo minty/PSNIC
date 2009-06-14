@@ -1,0 +1,61 @@
+[%- META title = 'search results';
+    load_sessions = 1;
+-%]
+
+<h2 class=search>Search Results for [% query | html %]</h2>
+
+[% FOR hit = results.all; %]
+<div class=hit>
+  <h3>
+    <a href="/pod?[% hit.name %]" title="[% hit.pod_description | html %]">
+      [% hit.pod_name %]
+    </a>
+  </h3>
+  [%
+  %]
+  [%
+    dist = hit.best_guess_distribution;
+
+    IF hit.version || dist; show_versions = 1; END;
+    IF show_versions; '<div class=version>'; END;
+    IF dist;
+        'By <a href="http://search.cpan.org/~';
+        dist.author.pauseid;
+        '/">';
+        dist.author.name;
+        '</a>. ';
+    END;
+    IF dist.version;
+        IF hit.version && hit.version < hit.cpan_equivalent.version; version_diff = 1; END;
+        IF version_diff;
+            '<span class=out-of-date>';
+            '<a href="/changes?';
+            dist.author.pauseid;
+            '/';
+            dist.name;
+            '-';
+            dist.version;
+            '/">';
+        END;
+
+        'Latest version ';
+        hit.cpan_equivalent.version;
+        IF version_diff;
+            '</a></span>';
+        END;
+        '. ';
+    END;
+    IF hit.version;
+        'You have version ';
+        hit.version;
+    END;
+    IF show_versions; '</div>'; END;
+  %]
+  [% IF hit.pod_description; '<div class=description>'; hit.pod_description; '</div>'; END %]
+  [% IF hit.distribution;
+       '<div class=link>from the ';
+       hit.distribution;
+       ' distribution</div>';
+  END %]
+</div>
+[% END %]

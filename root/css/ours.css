@@ -1,0 +1,145 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+h1 {
+  margin: 0;
+  font-size: 120%;
+}
+h2 {
+  margin: 0;
+  font-size: 90%;
+}
+#top-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  font-size: 10pt;
+  height: 40px;
+  background: #000;
+  color: #fff;
+  -webkit-box-shadow: 0 5px 10px #000;
+}
+#top-nav .inner {
+  padding: 1ex;
+}
+#top-nav form {
+  display: inline;
+}
+#top-nav a {
+  color: #fff;
+  cursor: pointer;
+}
+#wrap {
+  margin: 0;
+  padding: 1em 1ex 1ex 1ex;
+  position: absolute;
+  top: 40px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.hit a {
+  color: #000;
+}
+#home {
+  background: #eee;
+  max-width: 42em;
+  position: relative;
+  top: -1em;
+  padding: 1em;
+  left: 5%;
+}
+#home ul,
+#home p {
+  font-size: 85%;
+}
+#home h3 {
+  font-size: 80%;
+}
+#alpha {
+  color: #c00;
+}
+h2.search { display: none }
+.hit {
+  margin-bottom: 1em;
+  max-width: 42em;
+}
+.hit h3,
+.hit h4,
+.hit p {
+  margin: 0;
+}
+.hit h3 a         { color: #20c }
+.hit h3 a:visited { color: #551A8B }
+.hit h4 {
+  display: inline;
+}
+.hit .description {
+  font-size: 75%;
+  padding: 0.3em 0;
+}
+.hit .version {
+  font-size: 75%;
+  color: #666;
+}
+.hit .version a {
+  color: #666;
+}
+.hit .version .out-of-date,
+.hit .version .out-of-date a {
+  color: #966;
+}
+.hit .link {
+  color: green;
+  font-size: 75%;
+}
+.synopsis {
+  border: 2px solid #ddd;
+  background: #eee;
+  padding: 1ex;
+}
+.ui-dialog {
+  font-size: 80%;
+}
+.ui-dialog h1, .ui-dialog h2, .ui-dialog h3,
+.ui-dialog h4, .ui-dialog h5, .ui-dialog h6 {
+  font-size: 95%;
+}
+.ui-dialog p.description {
+  font-weight: bold;
+  margin: 0 0 1ex 0;
+}
+.ui-dialog .ui-dialog-title {
+  color: #000;
+}
+.ui-dialog .ui-dialog-content {
+  background: #e0f0f0;
+  color: #000;
+}
+#session-select option {
+  padding: 2px 1ex 2px 1ex;
+}
+#session-select option.title {
+  font-weight: bold;
+  padding-left: 0;
+}
+#session-select option.action {
+  font-weight: bold;
+}
+#session-select option.action.first {
+  border-top: 1px solid #ccc;
+}
+#loading {
+  font-weight: bold;
+  font-size: 120%;
+  color: #999;
+}
