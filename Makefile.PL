@@ -18,10 +18,10 @@ requires 'Config::General'; # This should reflect the config file format you've 
 requires 'Parse::CPAN::Cached' => 0.01;
 requires 'App::Cache' => 0.35;
 requires 'Config::JFDI' => 0.06;
-requires 'Data::JavaScript::Anon' => 1.03;
+requires 'Data::JavaScript::Anon' => 1.00;
 requires 'List::MoreUtils' => 0.22;
 requires 'LWP::UserAgent';
-requires 'Module::Build' => 0.31;
+requires 'Module::Build' => 0.30;
 requires 'Moose' => 0.72;
 requires 'Path::Class' => 0.16;
 requires 'Pod::Simple' => 3.07;
