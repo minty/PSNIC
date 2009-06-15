@@ -10,7 +10,7 @@
 
 <div id=home>
 
-<h1>PSNIC <span id=alpha>Alpha Release</span></h1>
+<h1>PSNIC <span class=alpha>Alpha Release</span></h1>
 
 <p>
   PSNIC runs on & searches the Perl code on <em>your</em> machine.

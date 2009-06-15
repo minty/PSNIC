@@ -38,6 +38,12 @@ h2 {
   color: #fff;
   cursor: pointer;
 }
+#top-nav #logo {
+  float: right;
+  font-weight: bold;
+  padding-top: 0.4em;
+  padding-right: 1em;
+}
 #wrap {
   margin: 0;
   padding: 1em 1ex 1ex 1ex;
@@ -72,7 +78,7 @@ a:hover {
 #home h3 {
   font-size: 80%;
 }
-#alpha {
+.alpha {
   color: #c00;
 }
 h2.search { display: none }
