@@ -28,7 +28,7 @@
 <ul>
   <li> Search module or subroutine names, Perl code, inline comments and pod.</li>
   <li> Search any one of these types or combinations of them.  E.g., modules that mention <a href="/search/?comment:%20JFDI">"JFDI" in the comments</a>.</li>
-  <li> Multiple "windows", so you can show related POD pages side by side. <a>Example</a>.
+  <li> Multiple "windows", so you can <a href="/search/?session=1&q=mod: DBD::mysql">show related POD pages side by side</a>.
   <li> Windows can be moved & resized (thanks to <a href="http://jquery.com/">jquery</a>).</li>
   <li> Remember your state. E.g. <a href="/search/?session=2&q=mod:%20Moose::">Moose doc set</a> - note the scroll position of the Pod windows.  Updates are disabled in the demo running on this site.</li>
 </ul>
@@ -41,7 +41,7 @@
   A real world working application <em>you</em> can use right away.  But also something to use as a reference or sandbox to learn, play and experiment with Perl, Moose, DBIx::Class, Template Toolkit, jQuery and other modern web application technologies.  The next level up from the classic <a href="http://search.cpan.org/perldoc?DBIx::Class::Manual::Example">CD</a> or Employee examples.
 </p>
 
-<p>Take this with a pinch of salt - people have different styles and I am no guru (plus this is a alpha release). It's an aspiration.</p>
+<p>That is the aspiration but take it with a pinch of salt - people have different styles and I am no guru (plus this is an alpha release).</p>
 
 <p>Suggestions, contributions or patches <a href="http://groups.google.com/group/parse-cpan-cached-dev">welcome</a>.  Big or small.</p>
 
@@ -87,13 +87,13 @@
   <li> Try SQLite and Postgres Full Text search solutions</li>
 </ul>
 
-
 <h3>Architecture / Design</h3>
 
 <ul>
   <li> Improve the code & code layout</li>
   <li> Try SQLite and Postgres Full Text search solutions</li>
   <li> Abtract more code out of the Catalyst application and into CPAN modules</li>
+  <li> It'd be fun to factor all the Perl code bits out into a Plugin, so we end up with a generic search application framework.  Instant Messenger logs, local jQuery documentation, MySQL manuals etc.</li>
 </ul>
 
 </div>
