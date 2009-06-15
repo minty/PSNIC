@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use parent 'Catalyst::Controller';
 
+use FindBin;
+
 #
 # Sets the actions in this controller to be registered with no prefix
 # so they function identically to actions created in MyApp.pm
@@ -27,7 +29,11 @@ PSNIC::Controller::Root - Root Controller for PSNIC
 =cut
 
 # Just load the static index page
-sub index :Path :Args(0) { }
+# XXX There must be a better way to do this?
+sub index :Path :Args(0) {
+    my ( $self, $c ) = @_;
+    $c->stash->{path} = "$FindBin::Bin/../root/index.tt";
+}
 sub help :Local :Args(0) { }
 sub alternatives :Local :Args(0) { }
 
@@ -35,7 +41,6 @@ sub default :Path {
     my ( $self, $c ) = @_;
     $c->response->body( 'Page not found' );
     $c->response->status(404);
-    
 }
 
 =head2 end

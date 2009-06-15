@@ -43,7 +43,7 @@
 
 <p>That is the aspiration but take it with a pinch of salt - people have different styles and I am no guru (plus this is an alpha release).</p>
 
-<p>Suggestions, contributions or patches <a href="http://groups.google.com/group/parse-cpan-cached-dev">welcome</a>.  Big or small.</p>
+<p>Questions, comments (good or bad), suggestions or patches welcome <a href="http://groups.google.com/group/parse-cpan-cached-dev">on the mailing list</a>.  Big or small.  Come say hi.</p>
 
 <h2>Example Searches</h2>
 
@@ -96,4 +96,9 @@
   <li> It'd be fun to factor all the Perl code bits out into a Plugin, so we end up with a generic search application framework.  Instant Messenger logs, local jQuery documentation, MySQL manuals etc.</li>
 </ul>
 
+<h2>Edit this page</h2>
+
+<p>
+  You can find the template for this index page at [% path %]
+</p>
 </div>
