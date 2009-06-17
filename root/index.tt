@@ -84,7 +84,7 @@
   <li> Adding users / authentication / authorisation for multi user support </li>
   <li> View (Perl) source of modules.</li>
   <li> Tree browser</li>
-  <li> Try SQLite and Postgres Full Text search solutions</li>
+  <li> Try SQLite, Postgres and <a href="http://sphinxsearch.com/">sphinx</a> full text and search solutions</li>
 </ul>
 
 <h3>Architecture / Design</h3>
