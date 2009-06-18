@@ -107,7 +107,7 @@ sub index_all_installed_modules {
 
     info 'indexing all installed modules';
     drop_then_deploy($db, qw<InstalledModule ModuleSubroutine ModulePodHeading>);
-    _index_modules($indexer, Module::INC->new->list);
+    _index_modules($indexer, PSNIC::Module::INC->new->list);
 }
 
 sub _index_modules {
