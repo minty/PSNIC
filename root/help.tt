@@ -37,6 +37,11 @@
 </p>
 
 <hr/><h3><a name=faq2>Why use MySQL Fulltext indexes? What about SQLite, Postgres, sphinx ...</a></h3>
+
 <p>I was more familiar with it.  The "out of the box" support in Postgres is newer.  Afaik, SQLite doesn't return relevancy scores along with the results (but I perhaps just ain't learnt how yet).  And I'm betting more people have MySQL installed thank Postgres or <a href="http://www.sphinxsearch.com/">sphinx</a>.</p>
+
+<p>I wasn't primarily interested here in the technology of how you index a corpus.  But rather in putting an end-to-end working application together that used a commodity search engine.  In that sense, any of the above ought to be (with some work) interchangeable for the purposes of this PSNIC project.</p>
+
 <p>I think it'd be fun to try these other engines.  Perhaps even abstract over them through <a href="http://search.cpan.org/perldoc?DBIx::Class">DBIx::Class</a>.  Patches welcome.</p>
+
 <p>There is also <a href="http://search.cpan.org/perldoc?KinoSearch">KinoSearch</a>, although I'm unclear how easily that could be abstracted over with the likes of DBIx::Class.</p>
