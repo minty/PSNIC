@@ -3,29 +3,40 @@
 <h2>Help</h2>
 
 <ul>
+  <li><a href="#faq0">Need help? Got a question?</a></li>
   <li><a href="#faq1">Why is only local code indexed, not all of (mini)cpan?</a></li>
-  <li><a href="#faq2">Why use MySQL Fulltext indexes? What about SQLite, Postgres, REGARTICLE, Splurk ...</a></li>
+  <li><a href="#faq2">Why use MySQL Fulltext indexes? What about SQLite, Postgres, sphinx ...</a></li>
 </ul>
+
+<hr/><h3><a name=faq0>Need help? Got a question?</a></h3>
+<p>
+  <a href="http://groups.google.com/group/psnic-dev">Try the mailing list</a>.  I'll do my best.
+</p>
 
 <hr/><h3><a name=faq1>Why is only local code indexed, not all of (mini)cpan?</a></h3>
 <p>
-  Index time and disk space.
+  Index time and disk space, combined with the desire that this <i>might, eventually</i> morph into an example application people can use to play with and learn from.
 </p>
 <p>
-  There are (circa mid 2009) ~18,088 distributions on MiniCPAN (more in the <a href="">BackPAN</a> which include around 66,000 modules.  Because we're indexing each module's code, comments & pod we have to parse each Perl and Pod file.
+  There are (circa mid 2009) ~18,088 distributions on MiniCPAN which include around 66,000 modules (more in the <a href="http://www.slideshare.net/brian_d_foy/indexing-backpan">BackPAN</a>).  Because we're indexing each module's code, comments & pod we have to parse each Perl and Pod file.
 </p>
 <p>
-  It takes about XXXX seconds to index XXXX modules (running on a 2.4Ghz Intel Core 2 Duo Unibody Macbook Pro circa early 2009).  To index all of MiniCPAN would take approximately XXXX hours.
+  <a href="http://use.perl.org/~Alias/journal/39028">Adam Kennedy is also trying to parse all of CPAN</a> through <a href="http://search.cpan.org/perldoc?PPI">PPI</a> and finding that 150,000 CPAN documents (modules?) consumes 5-6GB on disk when you store the parsed results in <a href="http://search.cpan.org/perldoc?Storable">Storable</a>.
 </p>
 <p>
-  ~2500 indexed modules use about ~25Mb Mb of disk space for the search indexes (MySQL MyISAM Fulltext indexes).  Or about 10Kb per module on average.  All of MiniCPAN would use up closer to 1Gb.
+  It takes me about 60 seconds on average to index ~250 installed modules (running on a 2.4Ghz Intel Core 2 Duo Macbook Pro circa early 2009).  Thus I estimate to index all of MiniCPAN would take approximately 80 hours assuming you've <i>already uncompressed</i> all the MiniCPAN tarballs.  And that MySQLs performance scales up linearly.
+</p>
+<p>
+  ~2500 indexed modules use about ~25Mb Mb of disk space for the search indexes (MySQL MyISAM Fulltext).  Or about 10Kb per module on average.  All of MiniCPAN would use up closer to 1Gb, just for the sql indexes.
 </p>
 <p>
   One of the key goals was a project that people could easily install, play with, modify and learn from, yet be useful from day one.  Requring them to spend many hours and have lots of free disk space (not to mention CPU and RAM available to run the indexer) didn't seem like a great idea.
 </p>
 <p>
-  It shouldn't be too hard to extend this to handle larger volumes - you could just start it running on your MiniCPAN directory.  But it hasn't been a priority to date, and I'm not promising it'll work without issue.
+  It shouldn't be <i>too</i> hard to extend this to handle larger volumes assuming you have the resources and patience.  But it hasn't been a priority to date and I'm not promising it'll work without issue.
 </p>
 
-<hr/><h3><a name=faq2>faq two</a></h3>
-<p>A short little answer here</p>
+<hr/><h3><a name=faq2>Why use MySQL Fulltext indexes? What about SQLite, Postgres, sphinx ...</a></h3>
+<p>I was more familiar with it.  The "out of the box" support in Postgres is newer.  Afaik, SQLite doesn't return relevancy scores along with the results (but I perhaps just ain't learnt how yet).  And I'm betting more people have MySQL installed thank Postgres or <a href="http://www.sphinxsearch.com/">sphinx</a>.</p>
+<p>I think it'd be fun to try these other engines.  Perhaps even abstract over them through <a href="http://search.cpan.org/perldoc?DBIx::Class">DBIx::Class</a>.  Patches welcome.</p>
+<p>There is also <a href="http://search.cpan.org/perldoc?KinoSearch">KinoSearch</a>, although I'm unclear how easily that could be abstracted over with the likes of DBIx::Class.</p>
