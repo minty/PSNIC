@@ -66,11 +66,11 @@
 
 <ul>
   <li> <a href="http://search.cpan.org/perldoc?CPANPLUS">Install through the cpan shell</a></li>
-  <li> <a href="">Packages for Ubuntu Jaunty</a></li>
-  <li> <a href="">Source is managed at github.com</a></li>
+  <li> <a href="http://www.mail-archive.com/london.pm@london.pm.org/msg17596.html">Packages for Ubuntu Jaunty</a> - the apt repo mentioned here should contain packages.</li>
+  <li> <a href="http://github.com/minty/PSNIC/tree/master">Source is managed at github.com</a></li>
 </ul>
 
-<p>There is a mailing list at <a href="http://groups.google.com/group/parse-cpan-cached-dev">http://groups.google.com/group/parse-cpan-cached-dev</a></p>
+<p>There is a mailing list at <a href="http://groups.google.com/group/psnic-dev">http://groups.google.com/group/psnic-dev</a></p>
 
 <h2>Todo</h2>
 
