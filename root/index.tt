@@ -20,7 +20,7 @@
 </p>
 
 <p>
-  It does <em>not</em> search all of CPAN, not even MINICPAN. The <a href="/help/#faqNN">FAQ</a> explains why.
+  It does <em>not</em> search all of CPAN, not even MINICPAN. The <a href="/help/#faq1">FAQ</a> explains why.
 </p>
 
 <h2>Key features:</h2>
@@ -43,7 +43,7 @@
 
 <p>That is the aspiration but take it with a pinch of salt - people have different styles and I am no guru (plus this is an alpha release).</p>
 
-<p>Questions, comments (good or bad), suggestions or patches welcome <a href="http://groups.google.com/group/parse-cpan-cached-dev">on the mailing list</a>.  Big or small.  Come say hi.</p>
+<p>Questions, comments (good or bad), suggestions or patches welcome <a href="http://groups.google.com/group/psnic-dev">on the mailing list</a>.  Big or small.  Come say hi.</p>
 
 <h2>Example Searches</h2>
 
