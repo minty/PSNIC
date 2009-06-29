@@ -10,5 +10,6 @@
   <li><a href="http://cpantools.com/beta/">cpantools.com/beta/</a> - tabs, google suggest, more whizzy</li>
   <li><a href="http://www.google.com/search?q=site%3Asearch.cpan.org">Google <em>site</em> search</a> - search through search.cpan.org (or another domain of your choosing)</li>
   <li><a href="http://www.google.com/codesearch?as_lang=perl">Google <em>code</em> search</a> - all the public Perl code Google can find</li>
+  <li><a href="http://search.cpan.org/perldoc?App::Perldoc::Search">App::Perldoc::Search</a> - Searches the perl documentation for strings</li>
   <li><code>grep -r</code></li>
 </ul>
