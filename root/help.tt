@@ -6,6 +6,7 @@
   <li><a href="#faq0">Need help? Got a question?</a></li>
   <li><a href="#faq1">Why is only local code indexed, not all of (mini)cpan?</a></li>
   <li><a href="#faq2">Why use MySQL Fulltext indexes? What about SQLite, Postgres, sphinx ...</a></li>
+  <li><a href="#faq3">What other Perl code search tools exist?</a></li>
 </ul>
 
 <hr/><h3><a name=faq0>Need help? Got a question?</a></h3>
@@ -45,3 +46,7 @@
 <p>I think it'd be fun to try these other engines.  Perhaps even abstract over them through <a href="http://search.cpan.org/perldoc?DBIx::Class">DBIx::Class</a>.  Patches welcome.</p>
 
 <p>There is also <a href="http://search.cpan.org/perldoc?KinoSearch">KinoSearch</a>, although I'm unclear how easily that could be abstracted over with the likes of DBIx::Class.</p>
+
+<hr/><h3><a name=faq3>What other Perl code search tools exist?</a></h3>
+
+<p>See <a href="/alternatives">alternatives</a>.</p>
