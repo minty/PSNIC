@@ -35,19 +35,19 @@
 
 <h2>Goals / Objective</h2>
 
-<p>The original goal was actually to produce a simple, clear, well written, useful and modern Perl application.</p>
+<p>The original goal was actually to produce a simple, clear, well written, useful and <a href="http://modernperlbooks.com/">modern</a> or <a href="http://www.enlightenedperl.org/">enlightened</a> Perl application.</p>
 
 <p>
-  A real world working application <em>you</em> can use right away.  But also something to use as a reference or sandbox to learn, play and experiment with Perl, Moose, DBIx::Class, Template Toolkit, jQuery and other modern web application technologies.  The next level up from the classic <a href="http://search.cpan.org/perldoc?DBIx::Class::Manual::Example">CD</a> or Employee examples.
+  A real world working application you can use right away.  But also something to use as a reference or sandbox to learn, play and experiment with Perl, <a href="http://search.cpan.org/dist/Moose/lib/Moose/Manual.pod">Moose</a>, <a href="http://search.cpan.org/perldoc?DBIx::Class::Manual::Intro">DBIx::Class</a>, <a href="http://template-toolkit.org/">Template Toolkit</a> as well as non-Perl stuff like jQuery.  The next level up from the classic <a href="http://search.cpan.org/perldoc?DBIx::Class::Manual::Example">CD</a> or Employee examples.
 </p>
 
-<p>That is the aspiration but take it with a pinch of salt - people have different styles and I am no guru (plus this is an alpha release).</p>
+<p>That is the aspiration but take it with a pinch of salt - people have different styles and I am no guru (plus this is an alpha release).  Currently it's a mostly working app but needs a lot of polish and documentation (and tests) before it might become a good example to learn and crib from.</p>
 
 <p>Questions, comments (good or bad), suggestions or patches welcome <a href="http://groups.google.com/group/psnic-dev">on the mailing list</a>.  Big or small.  Come say hi.</p>
 
 <h2>Example Searches</h2>
 
-<p>This demo searches the subset of CPAN installed on <em>this</em> local webserver.  Not (even close to) all of CPAN.</p>
+<p>This demo searches the subset of CPAN installed on <em>this</em> local webserver.  Not (even close to) all of CPAN.  And you cannot save state on this demo.</p>
 
 <ul id=examples>
   <li>
