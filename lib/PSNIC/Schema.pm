@@ -4,6 +4,8 @@ use PSNIC::Config::Local qw<get_conf>;
 
 __PACKAGE__->load_classes();
 
+# Used to connect from scripts using
+# my $db = PSNIC::Schema->db_connect;
 sub db_connect { return shift->connect(@{get_conf('Model::DB.connect_info')}); }
 
 # Ensure all tables are MyISAM.  Required for Full Text Indexes.
