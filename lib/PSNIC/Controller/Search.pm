@@ -40,8 +40,7 @@ my %cmds = map { ( "$_:" => 1 ) } qw<mod sub pod code>;
 sub tokenize {
     my ($query) = @_;
 
-    # Trim leading/trailing whitespace
-    $query =~ s/\A\s*//; $query =~ s/\s*\z//;
+    $query = trim($query);
 
     # strip characters we don't use
     $query =~ s/[^:\s\w]/ /;
@@ -83,4 +82,5 @@ sub expand_match_against_sql {
     return( join("\nAND ", @match), @args );
 }
 
+sub trim { my $str = shift; $str =~ s/\A\s*//; $str =~ s/\s*\z//; return $str; }
 1;
