@@ -50,14 +50,14 @@ sub tokenize {
     $query =~ s/__/::/g;
     my @tokens = split /\s+/, lc $query;
     my %query;
-    my $cmd = 'query';
+    my $cmd = 'query:';
     while (my $token = shift @tokens) {
         if ($cmds{$token}) {
             $cmd = $token;
             next;
         }
-        push @{ $query{$cmd} }, $token;
-        $cmd = 'query';
+        push @{ $query{substr($cmd, 0, -1)} }, $token;
+        $cmd = 'query:';
     }
     return %query;
 }
@@ -68,12 +68,12 @@ sub expand_match_against_sql {
     my (@match, @args);
     for my $type (keys %query) {
 
-        my @cols = $type eq 'sub:'  ? 'sub_names'
-                : $type eq 'mod:'  ? qw<distribution name>
-                : $type eq 'code:' ? 'code'
-                : $type eq 'pod:'  ? 'pod'
-                : $type eq 'query' ? qw<distribution name>
-                :                    ();
+        my @cols = $type eq 'sub'   ? 'sub_names'
+                 : $type eq 'mod'   ? qw<distribution name>
+                 : $type eq 'code'  ? 'code'
+                 : $type eq 'pod'   ? 'pod'
+                 : $type eq 'query' ? qw<distribution name>
+                 :                    ();
         die "Unknown query type '$type'" if !@cols;
 
         push @args, join ' ', @{ $query{$type} };
