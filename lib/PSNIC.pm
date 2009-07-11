@@ -35,8 +35,8 @@ __PACKAGE__->config({
     changes_base_uri => 'http://cpansearch.perl.org/src/',
 });
 
-# Start the application
-__PACKAGE__->setup(qw/-Debug ConfigLoader Static::Simple/);
+# Start the application (add -Debug for verbose debugging)
+__PACKAGE__->setup(qw/ConfigLoader Static::Simple/);
 
 
 =head1 NAME
