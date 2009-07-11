@@ -4,7 +4,7 @@
 
 <h2 class=search>Search Results for [% query | html %]</h2>
 
-[% IF !results.all %]
+[% IF !results %]
   <h2>Sorry, no results for "[% query | html %]"</h2>
 
   <p>You might want to try:</p>
@@ -14,7 +14,7 @@
   </ul>
 [% END %]
 
-[% FOR hit = results.all; %]
+[% FOR hit = results; %]
 <div class=hit>
   <h3>
     <a href="/pod?[% hit.name %]" title="[% hit.pod_description | html %]">

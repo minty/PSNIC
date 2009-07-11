@@ -15,15 +15,17 @@ sub index :Path :Args(0) {
     my $query   = $params{q} || $c->response->redirect('/');
     my %query   = tokenize($query);
     my @conds   = map { expand_match_against($_ => $query{$_}) } keys %query;
+    my $model   = $c->model('DB::InstalledModule');
+    my @results = $model->search({},{
+                    page => 1,
+                    rows => $ROWS_PER_PAGE,
+                })->search_literal(@conds)->all;
 
     $c->stash({
         template => 'search.tt',
         pod_page => $params{inline} ? 1 : 0,
         query    => $query,
-        results  => scalar $c->model('DB::InstalledModule')->search({},{
-                        page => 1,
-                        rows => $ROWS_PER_PAGE,
-                    })->search_literal(@conds),
+        results  => \@results,
     });
 }
 
