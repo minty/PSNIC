@@ -11,25 +11,26 @@ my $ROWS_PER_PAGE = 100;
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
-    my %params  = %{ $c->request->query_params };
-    my $query   = $params{q} || $c->response->redirect('/');
-    my %query   = tokenize($query);
-    my @conds   = expand_match_against_sql(%query);
-    my $model   = $c->model('DB::InstalledModule');
-    my $debugger = PSNIC::Model::Debugger->new();
+    my %params           = %{ $c->request->query_params };
+    my $query            = $params{q} || $c->response->redirect('/');
+    my %query_components = tokenize($query);
+    my @conds            = expand_match_against_sql(%query_components);
+    my $model            = $c->model('DB::InstalledModule');
+    my $debugger         = PSNIC::Model::Debugger->new();
     $model->result_source->storage->debugobj($debugger);
     $model->result_source->storage->debug(1);
-    my @results = $model->search({},{
-                    page => 1,
-                    rows => $ROWS_PER_PAGE,
-                })->search_literal(@conds)->all;
+    my @results          = $model->search({},{
+        page => 1,
+        rows => $ROWS_PER_PAGE,
+    })->search_literal(@conds)->all;
     $model->result_source->storage->debug(0);
 
     $c->stash({
-        template => 'search.tt',
-        pod_page => $params{inline} ? 1 : 0,
-        query    => $query,
-        results  => \@results,
+        template         => 'search.tt',
+        pod_page         => $params{inline} ? 1 : 0,
+        query            => $query,
+        query_components => \%query_components,
+        results          => \@results,
     });
 }
 
