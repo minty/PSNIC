@@ -14,7 +14,7 @@ sub index :Path :Args(0) {
     my %params  = %{ $c->request->query_params };
     my $query   = $params{q} || $c->response->redirect('/');
     my %query   = tokenize($query);
-    my @conds   = map { expand_match_against($_ => $query{$_}) } keys %query;
+    my @conds   = expand_match_against_sql(%query);
     my $model   = $c->model('DB::InstalledModule');
     my @results = $model->search({},{
                     page => 1,
@@ -55,23 +55,25 @@ sub tokenize {
     return %query;
 }
 
-sub expand_match_against {
-    my ($mode, $terms) = @_;
+sub expand_match_against_sql {
+    my (%query) = @_;
 
-    my $query = join ' ', @$terms;
-    $query =~ s/:/ /g;
-    $query =~ s/ +/ /g;
+    my (@match, @args);
+    for my $type (keys %query) {
 
-    # XXX We want a ft index that spans everything for the 'query' mode.
-    my @cols = $mode eq 'sub:'  ? 'sub_names'
-             : $mode eq 'mod:'  ? qw<distribution name>
-             : $mode eq 'query' ? 'pod'
-             : $mode eq 'code:' ? 'code'
-             :                   ();
-    die "unknown mode '$mode'" if !@cols;
+        my @cols = $type eq 'sub:'  ? 'sub_names'
+                : $type eq 'mod:'  ? qw<distribution name>
+                : $type eq 'code:' ? 'code'
+                : $type eq 'pod:'  ? 'pod'
+                : $type eq 'query' ? qw<distribution name>
+                :                    ();
+        die "Unknown query type '$type'" if !@cols;
 
-    my $cols = join ', ', @cols;
-    return qq[MATCH ($cols) AGAINST ( ? )], $query;
+        push @args, join ' ', @{ $query{$type} };
+        my $cols = join ', ', @cols;
+        push @match, qq[MATCH ($cols) AGAINST ( ? )];
+    }
+    return( join("\nAND ", @match), @args );
 }
 
 1;
