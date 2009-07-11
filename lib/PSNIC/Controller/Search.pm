@@ -40,6 +40,9 @@ my %cmds = map { ( "$_:" => 1 ) } qw<mod sub pod code>;
 sub tokenize {
     my ($query) = @_;
 
+    # Trim leading/trailing whitespace
+    $query =~ s/\A\s*//; $query =~ s/\s*\z//;
+
     # strip characters we don't use
     $query =~ s/[^:\s\w]/ /;
     $query =~ s/::/__/g;
