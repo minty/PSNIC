@@ -66,7 +66,7 @@ sub expand_match_against {
     my @cols = $mode eq 'sub:'  ? 'sub_names'
              : $mode eq 'mod:'  ? qw<distribution name>
              : $mode eq 'query' ? 'pod'
-             : $mode eq 'code'  ? 'code'
+             : $mode eq 'code:' ? 'code'
              :                   ();
     die "unknown mode '$mode'" if !@cols;
 
