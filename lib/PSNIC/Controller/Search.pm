@@ -83,4 +83,5 @@ sub expand_match_against_sql {
 }
 
 sub trim { my $str = shift; $str =~ s/\A\s*//; $str =~ s/\s*\z//; return $str; }
+
 1;
