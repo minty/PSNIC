@@ -16,10 +16,14 @@ sub index :Path :Args(0) {
     my %query   = tokenize($query);
     my @conds   = expand_match_against_sql(%query);
     my $model   = $c->model('DB::InstalledModule');
+    my $debugger = PSNIC::Model::Debugger->new();
+    $model->result_source->storage->debugobj($debugger);
+    $model->result_source->storage->debug(1);
     my @results = $model->search({},{
                     page => 1,
                     rows => $ROWS_PER_PAGE,
                 })->search_literal(@conds)->all;
+    $model->result_source->storage->debug(0);
 
     $c->stash({
         template => 'search.tt',
