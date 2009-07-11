@@ -115,6 +115,14 @@ h2.search { display: none }
   color: green;
   font-size: 75%;
 }
+.hit ul.context {
+  list-style: none;
+  padding: 0 0 0 0.5em;
+}
+.hit .context .hilite {
+  font-weight: bold;
+  background-color: #fcc;
+}
 .synopsis {
   border: 2px solid #ddd;
   background: #eee;

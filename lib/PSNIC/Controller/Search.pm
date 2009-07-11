@@ -16,14 +16,17 @@ sub index :Path :Args(0) {
     my %query_components = tokenize($query);
     my @conds            = expand_match_against_sql(%query_components);
     my $model            = $c->model('DB::InstalledModule');
-    my $debugger         = PSNIC::Model::Debugger->new();
-    $model->result_source->storage->debugobj($debugger);
-    $model->result_source->storage->debug(1);
+    #my $debugger         = PSNIC::Model::Debugger->new();
+    #$model->result_source->storage->debugobj($debugger);
+    #$model->result_source->storage->debug(1);
     my @results          = $model->search({},{
         page => 1,
         rows => $ROWS_PER_PAGE,
     })->search_literal(@conds)->all;
-    $model->result_source->storage->debug(0);
+    #$model->result_source->storage->debug(0);
+
+use Data::Dumper;
+warn Dumper \%query_components;
 
     $c->stash({
         template         => 'search.tt',
@@ -35,7 +38,7 @@ sub index :Path :Args(0) {
 }
 
 # XXX this wants to contain the ft index expansions
-my %cmds = map { ( "$_:" => 1 ) } qw<mod sub pod code>;
+my %cmds = map { ( "$_:" => 1 ) } qw<mod sub pod code comment>;
 
 # XXX Wants to handle "phrase matching" and -negation
 sub tokenize {
@@ -68,12 +71,13 @@ sub expand_match_against_sql {
     my (@match, @args);
     for my $type (keys %query) {
 
-        my @cols = $type eq 'sub'   ? 'sub_names'
-                 : $type eq 'mod'   ? qw<distribution name>
-                 : $type eq 'code'  ? 'code'
-                 : $type eq 'pod'   ? 'pod'
-                 : $type eq 'query' ? qw<distribution name>
-                 :                    ();
+        my @cols = $type eq 'sub'     ? 'sub_names'
+                 : $type eq 'mod'     ? qw<distribution name>
+                 : $type eq 'code'    ? 'code'
+                 : $type eq 'pod'     ? 'pod'
+                 : $type eq 'comment' ? 'comment'
+                 : $type eq 'query'   ? qw<distribution name>
+                 :                      ();
         die "Unknown query type '$type'" if !@cols;
 
         push @args, join ' ', @{ $query{$type} };

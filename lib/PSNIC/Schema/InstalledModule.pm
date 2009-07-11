@@ -79,4 +79,44 @@ sub sqlt_deploy_hook {
     );
 }
 
+use File::Slurp qw<read_file>;
+
+# Text::Context is better, but has some nasty performance edge cases.
+sub sub_context {
+    my ($self, $query) = @_;
+    return $self->base_context("sub $query");
+}
+
+sub comment_context {
+    my ($self, $query) = @_;
+    return $self->base_context($query);
+}
+sub code_context {
+    my ($self, $query) = @_;
+    return $self->base_context($query);
+}
+sub pod_context {
+    my ($self, $query) = @_;
+    return $self->base_context($query);
+}
+sub base_context {
+    my ($self, $query) = @_;
+
+    my @line = map { chomp($_); $_ } read_file($self->installed_at);
+    my @snippet;
+    for (my $i = 0; $i < @line; $i++) {
+
+        next if $line[$i] !~ /$query/i;
+        chomp $line[$i];
+        my @match;
+        push @match, $line[$i - 1] if $i > 0;
+        push @match, $line[$i];
+        push @match, $line[$i + 1] if $i < @line - 1;
+        my $snippet = join("\n", @match);
+        my @parts = $snippet =~ m{\A(.*)($query)(.*)\z}msi;
+        push @snippet, \@parts;
+    }
+    return \@snippet;
+}
+
 1;

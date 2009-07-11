@@ -67,5 +67,26 @@
        hit.distribution;
        ' distribution</div>';
   END %]
+[% MACRO context(type, list) BLOCK;
+  method = "${type}_context";
+  IF list.size > 0; '<ul class=context>';
+    FOR query_term = list;
+      FOR item = hit.$method(query_term);
+        '<li><pre>';
+        item.0 | html;
+        '<span class=hilite>';
+        item.1 | html;
+        '</span>';
+        item.2 | html;
+        '</pre></li>';
+      END;
+    END;
+  END;
+END %]
+  [% context('code', query_components.code) %]
+  [% context('pod', query_components.pod) %]
+  [% context('sub', query_components.sub) %]
+  [% context('comment', query_components.comment) %]
+
 </div>
 [% END %]
