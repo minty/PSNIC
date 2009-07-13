@@ -67,9 +67,9 @@ sub index_module {
         pod_html        => $parser->pod_html,
         pod_name        => $parser->pod_title,
         pod_description => $parser->pod_description,
-        pod             => strip($parser->raw_pod),
-        comment         => strip($parser->comments),
-        code            => strip($parser->code),
+        pod             => $parser->raw_pod,
+        comment         => $parser->comments,
+        code            => $parser->code,
         sub_names       => join ' ', @{ $parser->subroutines },
     );
     my $module_rs = $rs->create(\%row);
@@ -86,16 +86,6 @@ sub index_module {
         level      => $_->{level},
         label      => $_->{label},
     }) for @{ $parser->pod_headings };
-}
-
-# So strip out stuff we cannot use for searching
-# XXX We want to apply some tricks here to special chars like %, $
-sub strip {
-    my ($string) = @_;
-    $string =~ s/[^\w]+|\s+/ /g; # non words or whitespace => ' '
-    $string =~ s/\A \s*//x;      # strip leading whitespace
-    $string =~ s/\s* \z//x;      # strip training whitespace
-    return lc $string;
 }
 
 1;
