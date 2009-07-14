@@ -20,30 +20,39 @@
 </p>
 
 <p>
-  It does <em>not</em> search all of CPAN, not even MINICPAN. The <a href="/help/#faq1">FAQ</a> explains why.
+  It does <em>not</em> search all of CPAN. The <a href="/help/#faq1">FAQ</a> explains why.
 </p>
 
 <h2>Key features:</h2>
 
 <ul>
-  <li> Search module or subroutine names, Perl code, inline comments and pod.</li>
-  <li> Search any one of these types or combinations of them.  E.g., modules that mention <a href="/search/?comment:%20JFDI">"JFDI" in the comments</a>.</li>
-  <li> Multiple "windows", so you can <a href="/search/?session=1&q=mod: DBD::mysql">show related POD pages side by side</a>.
-  <li> Windows can be moved & resized (thanks to <a href="http://jquery.com/">jquery</a>).</li>
-  <li> Remember your state. E.g. <a href="/search/?session=2&q=mod:%20Moose::">Moose doc set</a> - note the scroll position of the Pod windows.  Updates are disabled in the demo running on this site.</li>
+  <li> Search by
+    <a href="/search/?session=new&q=mod:dbix::class::manual">module</a>,
+    <a href="/search/?session=new&q=sub:send_email">subroutine names</a>,
+    <a href="/search/?session=new&q=code:$foo">Perl code</a>,
+    <a href="/search/?session=new&q=comment: jfdi">inline comments</a>
+    or
+    <a href="/search/?session=new&q=pod:larry">pod</a>.
+  </li>
+  <li> Search combinations of these types.  E.g. <a href="/search/?session=new&q=mod:+ppi+code:+unshift">PPI modules that use 'unshift' in their code</a>.</li>
+  <li> Multiple "windows" so you can <a href="/search/?session=1&q=mod: DBD::mysql">show related POD pages side by side</a>.
+  <li> Resizable and movable windows (thanks to <a href="http://jquery.com/">jquery</a>).</li>
+  <li> Remember your state. <a href="/search/?session=2&q=mod:%20Moose::">note the scroll position</a> of the Pod windows.  Updates are disabled in this demo.</li>
 </ul>
 
 <h2>Goals / Objective</h2>
 
-<p>The original goal was actually to produce a simple, clear, well written, useful and <a href="http://modernperlbooks.com/">modern</a> or <a href="http://www.enlightenedperl.org/">enlightened</a> Perl application.</p>
+<p>The original goal was to produce a simple, well written and useful <a href="http://modernperlbooks.com/">modern</a> or <a href="http://www.enlightenedperl.org/">enlightened</a> Perl application.</p>
 
 <p>
-  A real world working application you can use right away.  But also something to use as a reference or sandbox to learn, play and experiment with Perl, <a href="http://search.cpan.org/dist/Moose/lib/Moose/Manual.pod">Moose</a>, <a href="http://search.cpan.org/perldoc?DBIx::Class::Manual::Intro">DBIx::Class</a>, <a href="http://template-toolkit.org/">Template Toolkit</a> as well as non-Perl stuff like jQuery.  The next level up from the classic <a href="http://search.cpan.org/perldoc?DBIx::Class::Manual::Example">CD</a> or Employee examples.
+  A real working application that's also a reference to learn from, play with and help you experiment with newer Perl features like <a href="http://search.cpan.org/dist/Moose/lib/Moose/Manual.pod">Moose</a>, <a href="http://search.cpan.org/perldoc?DBIx::Class::Manual::Intro">DBIx::Class</a> and <a href="http://www.catalystframework.org/">Catalyst</a>.  A level up from the classic <a href="http://search.cpan.org/perldoc?DBIx::Class::Manual::Example">CD</a> or Employee examples.
 </p>
 
-<p>That is the aspiration but take it with a pinch of salt - people have different styles and I am no guru (plus this is an alpha release).  Currently it's a mostly working app but needs a lot of polish and documentation (and tests) before it might become a good example to learn and crib from.</p>
+<p>If you're a regular, non expert Perl coder or curious about trying Perl then the goal is that this be something you'll find easy and fun to play with.  <a href="http://corehackers.perl.org/">Corehackers</a> are of course welcome too.  Think "clear and understandable" rather than "trivially simple".</p>
 
-<p>Questions, comments (good or bad), suggestions or patches welcome <a href="http://groups.google.com/group/psnic-dev">on the mailing list</a>.  Big or small.  Come say hi.</p>
+<p>That's the aspiration but take it with a <strike>pinch</strike> bucket of salt for now - I am no authority on Perl coding, people have different styles, plus this is an alpha release and it's a bit messy still.  It mostly works but needs a lot of polish, docs and tests before it might become a good example to learn from.</p>
+
+<p><a href="http://github.com/minty/PSNIC/tree/master">Grab the code</a>, have a play then fire your questions, suggestions or patches <a href="http://groups.google.com/group/psnic-dev">at the mailing list</a>.  Come say hi.</p>
 
 <h2>Example Searches</h2>
 
@@ -55,22 +64,34 @@
     [% example_search('mod: Moose::') %]
   </li>
   <li>
-    <h2>Modules with sub(routines) called "destroy"</h2>
+    <h2>sub(routines) called "destroy"</h2>
     [% example_search('sub: destroy') %]
+  </li>
+  <li>
+    <h2>Uses of 'foo' in the code</h2>
+    [% example_search('code: foo') %]
+  </li>
+  <li>
+    <h2>Comments about things todo</h2>
+    [% example_search('comment: todo') %]
+  </li>
+  <li>
+    <h2>Mentions of Larry in POD</h2>
+    [% example_search('pod: larry') %]
   </li>
 </ul>
 
-<p>See also the other <a href="/alternatives">Perl search tools</a>.</p>
+<p>There are a load of <a href="/alternatives">alternative Perl search tools</a> you might want to look at too.</p>
 
 <h2>How to get it</h2>
 
 <ul>
   <li> COMING SOON: <a href="http://search.cpan.org/perldoc?CPANPLUS">Install through the cpan shell</a></li>
-  <li> COMING SOON: <a href="http://www.mail-archive.com/london.pm@london.pm.org/msg17596.html">Packages for Ubuntu Jaunty</a> - the apt repo mentioned here should contain packages.</li>
+  <li> COMING SOON: <a href="http://www.mail-archive.com/london.pm@london.pm.org/msg17596.html">Packages for Ubuntu Jaunty</a> - the apt repo mentioned here should (eventually) contain packages.</li>
   <li> <a href="http://github.com/minty/PSNIC/tree/master">Source is managed at github.com</a></li>
 </ul>
 
-<p>There is a mailing list at <a href="http://groups.google.com/group/psnic-dev">http://groups.google.com/group/psnic-dev</a></p>
+<p>There is a <a href="http://groups.google.com/group/psnic-dev">mailing list</a> and I'll post progress updates at <a href="http://sysmonblog.co.uk">the blog</a></p>
 
 <h2>Todo</h2>
 
@@ -78,27 +99,30 @@
 
 <ul>
   <li> Negated searches (comments contain jfdi but NOT timtowtdi).</li>
-  <li> Phrase searches ("modern perl", which wouldn't match "perl is modern").</li>
-  <li> Better pure Pod file integration (associate with the right distribution)</li>
-  <li> Improve the search heuristics</li>
+  <li> Phrase searches (<a href="/search/?q="modern perl"">"modern perl"</a>, which wouldn't match "perl is modern" ... yes I know it errors atm).</li>
+  <li> Better <a href="/search/?q=catalyst%3A%3Amanual">pure Pod file integration</a> (associate with the right distribution)</li>
+  <li> Improve the <a href="/search/?q=dbix%3A%3Aclass&search=Search">search heuristics</a></li>
   <li> Adding users / authentication / authorisation for multi user support </li>
   <li> View (Perl) source of modules.</li>
   <li> Tree browser</li>
-  <li> Try SQLite, Postgres and <a href="http://sphinxsearch.com/">sphinx</a> full text and search solutions</li>
 </ul>
 
 <h3>Architecture / Design</h3>
 
 <ul>
   <li> Improve the code & code layout</li>
-  <li> Try SQLite and Postgres Full Text search solutions</li>
+  <li> Try SQLite, Postgres and <a href="http://sphinxsearch.com/">sphinx</a> full text and search solutions</li>
   <li> Abtract more code out of the Catalyst application and into CPAN modules</li>
   <li> It'd be fun to factor all the Perl code bits out into a Plugin, so we end up with a generic search application framework.  Instant Messenger logs, local jQuery documentation, MySQL manuals etc.</li>
 </ul>
 
-<h2>Edit this page</h2>
+<h3>Also ...</h3>
 
-<p>
-  You can find the template for this index page at [% path %]
-</p>
-</div>
+<ul>
+  <li> Tests</li>
+  <li> Documentation</li>
+  <li> Tutorials, hung around the source code</li>
+  <li> Tests</li>
+  <li> Improve the cpan dist / meta files (licence, git repo, README, etc)</li>
+  <li> Tests</li>
+</ul>
