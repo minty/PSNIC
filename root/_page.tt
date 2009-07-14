@@ -2,6 +2,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     [% IF !pod_page %]
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="http://sysmonblog.co.uk/atom.xml" />
     <link type="text/css" href="/css/jquery-ui-1.7.1.custom.css" rel="stylesheet" />
     <link type="text/css" href="/css/ours.css" rel="stylesheet" />
     <script type="text/javascript" src="/js/jquery-1.3.2.min.js"></script>
