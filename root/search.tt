@@ -70,22 +70,26 @@
        hit.distribution;
        ' distribution</div>';
   END %]
+
 [% MACRO context(type, list) BLOCK;
   method = "${type}_context";
-  IF list.size > 0; '<ul class=context>';
+  IF list;
+    '<ul class=context>';
     FOR query_term = list;
-      FOR item = hit.$method(query_term);
-        '<li><pre>';
-        item.0 | html;
-        '<span class=hilite>';
-        item.1 | html;
-        '</span>';
-        item.2 | html;
-        '</pre></li>';
+      escaped_query_term = query_term | html;
+      FOR match = hit.$method(query_term);
+        FOR item = match;
+          '<li class=' _ item.type _ '><pre>';
+          escaped = item.line | html;
+          escaped.replace("($escaped_query_term)", '<span class=hilite>$1</span>');
+          "</pre></li>\n";
+        END;
       END;
     END;
+    '</ul>';
   END;
 END %]
+
   [% context('code', query_components.code) %]
   [% context('pod', query_components.pod) %]
   [% context('sub', query_components.sub) %]

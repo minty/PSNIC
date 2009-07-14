@@ -119,6 +119,12 @@ h2.search { display: none }
   list-style: none;
   padding: 0 0 0 0.5em;
 }
+.hit ul.context li pre {
+  margin: 0;
+}
+.hit li.after {
+  margin-bottom: 0.5em;
+}
 .hit .context .hilite {
   font-weight: bold;
   background-color: #fcc;

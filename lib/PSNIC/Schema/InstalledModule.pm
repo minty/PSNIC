@@ -79,14 +79,11 @@ sub sqlt_deploy_hook {
     );
 }
 
-use File::Slurp qw<read_file>;
-
-# Text::Context is better, but has some nasty performance edge cases.
+# XXX There is surely a better way to do this?
 sub sub_context {
     my ($self, $query) = @_;
     return $self->base_context("sub $query", $self->code);
 }
-
 sub comment_context {
     my ($self, $query) = @_;
     return $self->base_context($query, $self->comment);
@@ -103,20 +100,39 @@ sub base_context {
     my ($self, $query, $data) = @_;
 
     my @snippet;
+    my %seen;
+
+    # First find all the lines that match
     my @line = split /\n/, $data;
     for (my $i = 0; $i < @line; $i++) {
-
         next if $line[$i] !~ /$query/i;
-        chomp $line[$i];
-        my @match;
-        push @match, $line[$i - 1] if $i > 0;
-        push @match, $line[$i];
-        push @match, $line[$i + 1] if $i < @line - 1;
-        my $snippet = join("\n", @match);
-        my @parts = $snippet =~ m{\A(.*)($query)(.*)\z}msi;
-        push @snippet, \@parts;
+        $seen{$i} = $line[$i];
     }
+
+    # Now add a line before/after, avoiding duplicate lines
+    for my $line_num (sort { $a <=> $b } keys %seen) {
+        my @match;
+        push @match, line_hash( \@line, $line_num - 1, 'before' );
+            if $line_num > 0
+            && !$seen{ $line_num - 1 };
+        push @match, line_hash( \@line, $line_num, 'match' );
+        push @match, line_hash( \@line, $line_num + 1, 'after' );
+            if $line_num < (@line - 1)
+            && !$seen{ $line_num + 1 };
+        push @snippet, \@match;
+        $seen{$_} = 1 for ($line_num - 1, $line_num + 1);
+    }
+
     return \@snippet;
+}
+
+sub line_hash {
+    my ($line, $num, $type) = @_;
+    return {
+        type => $type,
+        line => $line->[ $num ],
+        num  => $num,
+    };
 }
 
 1;
