@@ -25,9 +25,6 @@ sub index :Path :Args(0) {
     })->search_literal(@conds)->all;
     #$model->result_source->storage->debug(0);
 
-use Data::Dumper;
-warn Dumper \%query_components;
-
     $c->stash({
         template         => 'search.tt',
         pod_page         => $params{inline} ? 1 : 0,
