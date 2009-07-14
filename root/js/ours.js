@@ -72,8 +72,8 @@ $(function() {
         $('#new-dialog').click(function() {
             create_dialog({
                 open: true,
-                body: "<p>Click a search result to view it's POD here.</p><p>You can drag this window around and resize it.</p>",
-            })
+                body: "<p>Click a search result to view it's POD here.</p><p>You can drag this window around and resize it.</p>"
+            });
         });
     }
 
@@ -97,14 +97,13 @@ $(function() {
 
         if (!properties) properties = {};
         default_properties = {
-            open: false,
-
+            open: false
         };
         // Defaults, overridden by anything in properties
         properties = jQuery.extend({
             open: false,
             title: 'Empty Window',
-            body: 'Loading ...',
+            body: 'Loading ...'
         }, properties);
 
         var dialog   = get_dialog_defaults(session);
@@ -127,17 +126,17 @@ $(function() {
                 // Toggle the styles on the active/top dialog
                 $('.ui-dialog').css({
                     border: '1px solid #ccc',
-                    '-webkit-box-shadow': 'none',
+                    '-webkit-box-shadow': 'none'
                 });
                 $('.ui-dialog .ui-dialog-content').css({
-                    color: '#444',
+                    color: '#444'
                 });
                 $('#dialog'+id).parent().css({
                     border: '2px solid #000',
-                    '-webkit-box-shadow': '0 5px 10px #000',
+                    '-webkit-box-shadow': '0 5px 10px #000'
                 });
                 $('#dialog'+id+'.ui-dialog-content').css({
-                    color: '#000',
+                    color: '#000'
                 });
 
                 // Nothing to update if we're already the top dialog
@@ -205,7 +204,7 @@ $(function() {
             width:   viewport.width() / 3,
             height:  viewport.height() - 100,
             y:       50,
-            pod:     '',
+            pod:     ''
         };
         dialog.x = viewport.width() - dialog.width - 40;
         return dialog;
@@ -277,7 +276,7 @@ $(function() {
         var now = new Date();
         return {
             'session': session,
-            'created_at': fmt_date(now) + ' ' + fmt_time(now),
+            'created_at': fmt_date(now) + ' ' + fmt_time(now)
         };
     }
 
@@ -333,7 +332,7 @@ $(function() {
             { value: '',        text: 'Sessions' },
             { value: '_new',    text: 'Create new session',  'class': 'action first' },
             { value: '_delete', text: 'Delete this session', 'class': 'action' },
-            { value: '_label',  text: 'Label this session',  'class': 'action' },
+            { value: '_label',  text: 'Label this session',  'class': 'action' }
         ];
         for (d in data) select.append(mk_option(data[d]));
         select.append(mk_option({disabled: true}));
@@ -343,7 +342,7 @@ $(function() {
             select.append(mk_option({
                 value: spec.session,
                 'class': 'session',
-                text: 'Session ' + (parseInt(s) + 1) + ': ' + text,
+                text: 'Session ' + (parseInt(s) + 1) + ': ' + text
             }));
         }
 
@@ -421,7 +420,7 @@ $(function() {
         $('#session-select').append(mk_option({
             value: session,
             'class': 'session',
-            text: 'Session ' + ($('#session-select option.session').length + 1) + ': ' + text,
+            text: 'Session ' + ($('#session-select option.session').length + 1) + ': ' + text
         }));
     }
 
