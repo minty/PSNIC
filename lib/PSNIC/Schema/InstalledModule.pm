@@ -84,26 +84,26 @@ use File::Slurp qw<read_file>;
 # Text::Context is better, but has some nasty performance edge cases.
 sub sub_context {
     my ($self, $query) = @_;
-    return $self->base_context("sub $query");
+    return $self->base_context("sub $query", $self->code);
 }
 
 sub comment_context {
     my ($self, $query) = @_;
-    return $self->base_context($query);
+    return $self->base_context($query, $self->comment);
 }
 sub code_context {
     my ($self, $query) = @_;
-    return $self->base_context($query);
+    return $self->base_context($query, $self->code);
 }
 sub pod_context {
     my ($self, $query) = @_;
-    return $self->base_context($query);
+    return $self->base_context($query, $self->pod);
 }
 sub base_context {
-    my ($self, $query) = @_;
+    my ($self, $query, $data) = @_;
 
-    my @line = map { chomp($_); $_ } read_file($self->installed_at);
     my @snippet;
+    my @line = split /\n/, $data;
     for (my $i = 0; $i < @line; $i++) {
 
         next if $line[$i] !~ /$query/i;
