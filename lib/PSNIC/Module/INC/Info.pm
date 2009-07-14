@@ -24,9 +24,12 @@ sub relative_path {
     return $self->full_path =~ m{\A $base / (.*) \z}x ? $1 : undef;
 }
 
+# I'm looking at your MT::Meta.pm
 sub version {
     my ($self) = @_;
-    return Module::Build::ModuleInfo->new_from_file($self->full_path)->version;
+    my $mi;
+    eval { $mi = Module::Build::ModuleInfo->new_from_file($self->full_path) };
+    return $@ ? undef : $mi->version;
 }
 
 sub name {
