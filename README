@@ -1,3 +1,7 @@
+# For now, you MUST have a minicpan setup. This dependency needs fixing.
+
+    http://search.cpan.org/perldoc?minicpan
+
 # Create the database & user
 
     $ mysqladmin -u root -p create cpan
@@ -13,7 +17,8 @@
 
     $ ./script/index.pl -v --reset-db
 
-# Build indexes.  Will take ~20-30mins on a 2Ghz Macbook Pro
+# Build indexes.
+# ~20-30mins on a 2Ghz Macbook Pro host or a £15/month bytemark.co.uk vm
 
     $ ./script/index.pl -v -a -d -i
 
