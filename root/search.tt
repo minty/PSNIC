@@ -81,7 +81,7 @@
         FOR item = match;
           '<li class=' _ item.type _ '><pre>';
           escaped = item.line | html;
-          escaped.replace("($escaped_query_term)", '<span class=hilite>$1</span>');
+          escaped.replace("(?i)($escaped_query_term)", '<span class=hilite>$1</span>');
           "</pre></li>\n";
         END;
       END;
