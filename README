@@ -1,1 +1,24 @@
-Run script/psnic_server.pl to test the application.
+# Create the database & user
+
+    $ mysqladmin -u root -p create cpan
+    $ mysql -u root -p
+    mysql> GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX
+        ON cpan.* TO some_user@localhost IDENTIFIED BY 'some_password';
+
+# Update the config with db name, user & password.
+
+    $ vi psnic.conf
+
+# Create the tables/schema
+
+    $ ./script/index.pl -v --reset-db
+
+# Build indexes.  Will take ~20-30mins on a 2Ghz Macbook Pro
+
+    $ ./script/index.pl -v -a -d -i
+
+# Then run the application:
+
+    $ ./script/psnic_server.pl [-r]
+
+-r will have the server auto reload if you change any Perl code.
