@@ -112,11 +112,11 @@ sub base_context {
     # Now add a line before/after, avoiding duplicate lines
     for my $line_num (sort { $a <=> $b } keys %seen) {
         my @match;
-        push @match, line_hash( \@line, $line_num - 1, 'before' );
+        push @match, line_hash( \@line, $line_num - 1, 'before' )
             if $line_num > 0
             && !$seen{ $line_num - 1 };
         push @match, line_hash( \@line, $line_num, 'match' );
-        push @match, line_hash( \@line, $line_num + 1, 'after' );
+        push @match, line_hash( \@line, $line_num + 1, 'after' )
             if $line_num < (@line - 1)
             && !$seen{ $line_num + 1 };
         push @snippet, \@match;
