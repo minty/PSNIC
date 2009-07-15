@@ -35,8 +35,9 @@
     <a href="/search/?session=new&q=pod:larry">pod</a>.
   </li>
   <li> Search combinations of these types.  E.g. <a href="/search/?session=new&q=mod:+ppi+code:+unshift">PPI modules that use 'unshift' in their code</a>.</li>
-  <li> Multiple "windows" so you can <a href="/search/?session=1&q=mod: DBD::mysql">show related POD pages side by side</a>.
+  <li> Multiple "windows" so you can <a href="/search/?session=1&q=mod:+dbix::class+manual">show related POD pages side by side</a>.
   <li> Resizable and movable windows (thanks to <a href="http://jquery.com/">jquery</a>).</li>
+  <li> Code, pod or comment "snippets" displayed <a href="/search/?session=new&q=mod%3Atemplate+filters+pod%3Areplace">within the results</a></li>
   <li> Remember your state. <a href="/search/?session=2&q=mod:%20Moose::">note the scroll position</a> of the Pod windows.  Updates are disabled in this demo.</li>
 </ul>
 
