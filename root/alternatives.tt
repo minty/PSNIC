@@ -12,5 +12,6 @@
   <li><a href="http://www.google.com/codesearch?as_lang=perl">Google <em>code</em> search</a> - all the public Perl code Google can find</li>
   <li><a href="http://search.cpan.org/perldoc?App::Perldoc::Search">App::Perldoc::Search</a> - Searches the perl documentation for strings</li>
   <li><a href="http://perlbuzz.com/2009/07/introducing-cpanhq.html">CPANHQ</a> - community-driven, meta-data-enhanced alternative</li>
+  <li><a href="http://search.cpan.org/dist/Kasago/lib/Kasago.pm">Kasago</a> - A Perl source code indexer</li>
   <li><code>grep -r</code></li>
 </ul>
